@@ -8,6 +8,7 @@ import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.math.collision.BoundingBox;
 import com.badlogic.gdx.math.collision.Ray;
+import com.nikrasoff.seamlessportals.items.HandheldPortalGen;
 import com.nikrasoff.seamlessportals.items.UnstableHandheldPortalGen;
 import finalforeach.cosmicreach.entities.Entity;
 import finalforeach.cosmicreach.entities.player.Player;
@@ -48,7 +49,7 @@ public abstract class InGameMixin {
         Entity lookingAt = companionCube$raycastForEntities(localPlayer.getZone(), rawWorldCamera);
         if(lookingAt instanceof Cube cube) {
             if (Gdx.input.isKeyJustPressed(Input.Keys.E)) {
-                if (heldItemStack.getItem().getID().equals(UnstableHandheldPortalGen.hpgID)) {
+                if (heldItemStack.getItem().getID().equals(UnstableHandheldPortalGen.hpgID) || heldItemStack.getItem().getID().equals(HandheldPortalGen.hpgID)) {
                     if (cube.magnetPlayer != null) {
                         if (cube.magnetPlayer.getAccount().getUniqueId().equals(localPlayer.getAccount().getUniqueId()))
                             PhysicsWorld.dropMagnet(localPlayer);
@@ -66,7 +67,7 @@ public abstract class InGameMixin {
         Entity playerEntity = InGame.getLocalPlayer().getEntity();
 
         for (Entity e : zone.getAllEntities()) {
-            if (e != playerEntity && e instanceof Cube cube) {
+            if (e != playerEntity && e instanceof Cube) {
                 e.getBoundingBox(this.companionCube$tmpBoundingBox);
                 if (Intersector.intersectRayBounds(this.companionCube$ray, this.companionCube$tmpBoundingBox, this.companionCube$intersectionPoint)) {
                     float distance = this.companionCube$intersectionPoint.dst(worldCamera.position);
