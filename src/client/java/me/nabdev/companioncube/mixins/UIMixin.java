@@ -1,5 +1,6 @@
 package me.nabdev.companioncube.mixins;
 
+import com.nikrasoff.seamlessportals.items.HandheldPortalGen;
 import com.nikrasoff.seamlessportals.items.UnstableHandheldPortalGen;
 import finalforeach.cosmicreach.items.ItemStack;
 import finalforeach.cosmicreach.ui.UI;
@@ -13,7 +14,7 @@ public class UIMixin {
     @Inject(method = "setInventoryOpen", at = @At("HEAD"), cancellable = true)
     private static void setInventoryOpen(boolean set, CallbackInfo ci){
         ItemStack heldItemStack = UI.hotbar.getSelectedItemStack();
-        if (heldItemStack == null || !heldItemStack.getItem().getID().equals(UnstableHandheldPortalGen.hpgID)) return;
+        if (heldItemStack == null || (!heldItemStack.getItem().getID().equals(UnstableHandheldPortalGen.hpgID) && !heldItemStack.getItem().getID().equals(HandheldPortalGen.hpgID))) return;
         ci.cancel();
     }
 }
