@@ -12,7 +12,7 @@ loom {
             sourceSet sourceSets.client
         }
     }
-    accessWidenerPath = file("src/main/resources/example_mod.manipulator")
+    accessWidenerPath = file("src/main/resources/companion_cube.manipulator")
 }
 
 repositories {
@@ -24,6 +24,9 @@ repositories {
 
 dependencies {
     cosmicReach("finalforeach:cosmicreach:${cosmic_reach_version}")
+
+    mod files('run/pmods/CosmicReach-Seamless-Portals-2.1.1-merged-bundle.jar')
+    mod files('run/pmods/CosmicPhysics-2.0.0-b7-merged-bundle.jar')
 }
 
 processResources {

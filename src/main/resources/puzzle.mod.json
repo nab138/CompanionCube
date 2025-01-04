@@ -5,30 +5,28 @@
   "name": "${mod_name}",
   "description": "${mod_desc}",
   "authors": [
-    "YOU :D"
+    "nab138"
   ],
   "meta": {
-    "icon": "example-mod:icons/icon.png"
+    "icon": "companioncube:icons/icon.png"
   },
   "entrypoints": {
-    "client_init": [
-      "org.example.exmod.ClientInitializer"
-    ],
     "init": [
-      "org.example.exmod.ExampleMod"
-    ],
-    "preInit": [
-      "org.example.exmod.ExampleModPreinit"
+      "me.nabdev.companioncube.CompanionCube"
     ]
   },
   "mixins": [
-    "example.mixins.json"
+    "companioncube.mixins.json",
+    {
+      "config": "companioncube.client.mixins.json",
+      "environment": "client"
+    }
   ],
   "depends": {
-    "cosmic-reach": ">=0.3.6",
-    "puzzle-loader": ">=2.0.9"
+    "cosmic-reach": ">=0.3.14",
+    "puzzle-loader": ">=2.2.3"
   },
   "accessTransformers": [
-    "example_mod.manipulator"
+    "companion_cube.manipulator"
   ]
 }
